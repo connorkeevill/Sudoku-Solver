@@ -9,9 +9,23 @@ public class SudokuBoard {
 		board = new int[81];
 	}
 
+	/**
+	 * Initialises the board using a string containing the values of each square, separated by spaces. This string is
+	 * converted into the array used to represent the board.
+	 * @param boardLayout
+	 */
 	public SudokuBoard(String boardLayout)
 	{
-		//Convert string into array, check that its the right lenght, check that it's valid, check that all numbers are in range.
+		String[] board = boardLayout.split(" ");
+
+		if(board.length > 81)
+		{
+			throw new IllegalArgumentException("The board layout must be exactly 81 numbers. It is too long.");
+		}
+		if(board.length < 81)
+		{
+			throw new IllegalArgumentException("The board layout must be exactly 81 numbers. It is too short.");
+		}
 	}
 
 	public String toString()
@@ -23,7 +37,6 @@ public class SudokuBoard {
 	{
 		return false;
 	}
-
 
 	/**
 	 * Returns a boolean indicating whether or not the given row contains a valid set of numbers.
