@@ -34,25 +34,79 @@ public class SudokuBoard {
 		}
 	}
 
-	private void guardAgainstInvalidBoardLength(String[] board) {
-		if(board.length > 81)
-		{
-			throw new IllegalArgumentException("The board layout must be exactly 81 numbers. It is too long.");
-		}
-		if(board.length < 81)
-		{
-			throw new IllegalArgumentException("The board layout must be exactly 81 numbers. It is too short.");
-		}
-	}
-
+	/**
+	 * Returns a string representing the board.
+	 * @return string representation of the board.
+	 */
 	public String toString()
 	{
-		return  "";
+		StringBuilder output = new StringBuilder();
+
+		for(int square = 0; square < board.length; square++)
+		{
+			if(board[square] == 0)
+			{
+				output.append(" ");
+			}
+			else
+			{
+				output.append(board[square]);
+			}
+
+			// If we aren't at the right hand side of the board, add a column divider.
+			if((square + 1) % 9 != 0)
+			{
+				// If we aren't at the boundary of a sub-board, add a single pipe, otherwise add a double.
+				if((square + 1) % 3 != 0) {
+					output.append(" | ");
+				}
+				else
+				{
+					output.append(" || ");
+				}
+			}
+			// At the end of each row, we need to add a row divider
+			else
+			{
+				output.append("\n");
+
+				// These are the squares before the new line needs to be a double boundary for the
+				if(square == 26 || square == 53)
+				{
+					output.append("===================================\n");
+				}
+				else if(square != board.length - 1)
+				{
+					output.append("-----------------------------------\n");
+				}
+			}
+		}
+
+		return output.toString();
 	}
 
+	/**
+	 * Returns a boolean indicating whether or not the board is in a valid configuration.
+	 * @return the boolean
+	 */
 	public boolean isValid()
 	{
 		return false;
+	}
+
+	/**
+	 * Protects against a board layout of the incorrect length.
+	 * @param boardLayout the board layout to verify
+	 */
+	private void guardAgainstInvalidBoardLength(String[] boardLayout) {
+		if(boardLayout.length > 81)
+		{
+			throw new IllegalArgumentException("The board layout must be exactly 81 numbers. It is too long.");
+		}
+		if(boardLayout.length < 81)
+		{
+			throw new IllegalArgumentException("The board layout must be exactly 81 numbers. It is too short.");
+		}
 	}
 
 	/**
