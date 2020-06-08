@@ -12,12 +12,22 @@ public class SudokuBoard {
 	/**
 	 * Initialises the board using a string containing the values of each square, separated by spaces. This string is
 	 * converted into the array used to represent the board.
-	 * @param boardLayout
+	 * @param boardLayout the string containing the layout of the Sudoku board
 	 */
 	public SudokuBoard(String boardLayout)
 	{
+		this.board = new int[81];
 		String[] board = boardLayout.split(" ");
 
+		guardAgainstInvalidBoardLength(board);
+
+		for(int item = 0; item < board.length; item++)
+		{
+			this.board[item] = Integer.parseInt(board[item]);
+		}
+	}
+
+	private void guardAgainstInvalidBoardLength(String[] board) {
 		if(board.length > 81)
 		{
 			throw new IllegalArgumentException("The board layout must be exactly 81 numbers. It is too long.");
