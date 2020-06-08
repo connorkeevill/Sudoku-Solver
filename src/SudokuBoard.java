@@ -9,10 +9,21 @@ public class SudokuBoard {
 		board = new int[81];
 	}
 
-	public SudokuBoard(int[] initialLayout)
+	public SudokuBoard(String boardLayout)
 	{
-		board = initialLayout;
+		//Convert string into array, check that its the right lenght, check that it's valid, check that all numbers are in range.
 	}
+
+	public String toString()
+	{
+		return  "";
+	}
+
+	public boolean isValid()
+	{
+		return false;
+	}
+
 
 	/**
 	 * Returns a boolean indicating whether or not the given row contains a valid set of numbers.
