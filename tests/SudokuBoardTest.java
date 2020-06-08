@@ -179,7 +179,15 @@ class SudokuBoardTest {
 	@Test
 	void rejectBoardLayoutContainingText()
 	{
-		String boardLayout = "t e s t";
+		String boardLayout = "t e s t t e s t t " +
+							 "e s t t e s t t e " +
+							 "s t t e s t t e s " +
+							 "t t e s t t e s t " +
+							 "t e s t t e s t t " +
+							 "e s t t e s t t e " +
+							 "s t t e s t t e s " +
+							 "t t e s t t e s t " +
+							 "t e s t t e s t t";
 
 		assertThrows(NumberFormatException.class, () -> new SudokuBoard(boardLayout));
 	}
