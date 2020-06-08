@@ -1,5 +1,6 @@
 /**
- * The main object for the board. Represents a sudoku board as an array.
+ * The main object for the board. Represents a sudoku board as an array, with each index representing a square in
+ * the board, with 0 being the top left, and 80 being the bottom right.
  */
 public class SudokuBoard {
 	int[] board;
@@ -62,6 +63,40 @@ public class SudokuBoard {
 		}
 
 		return colValidity.isValid();
+	}
+
+	/**
+	 * Returns a boolean indicating whether or no the given sub-board contains a valid set of numbers.
+	 * @param subBoard the sub-board to validate; 0 is top left, and moving left to right, 8 is bottom right.
+	 * @return boolean indicating whether or now the sub-board is valid.
+	 */
+	private boolean validateSubBoard(int subBoard)
+	{
+		if(!inRange(subBoard, 0, 8))
+		{
+			throw new IndexOutOfBoundsException("There are only 9 sub-boards");
+		}
+
+		// This formula maps the numbers 0-8 onto the starting points (i.e. top left square) of each sub-board in the array.
+		// 0 -> 0, 1 -> 3, 2 -> 6, 3 -> 27, 4 -> 30, ..., 7 -> 57, 8 -> 60
+		int startingPoint = (subBoard / 3) * 27 + (subBoard % 3) * 3;
+
+		NumberConstraint subBoardValidity = new NumberConstraint();
+
+		// Outer loop loops through the rows of the sub-board, each separated by 9 in the array.
+		for(int subBoardRow = startingPoint; subBoardRow < startingPoint + 27; subBoardRow += 9)
+		{
+			// Inner loop loops through the columns of each row of the sub-board.
+			for(int subBoardCol = subBoardRow; subBoardCol < subBoardRow + 3; subBoardCol += 1)
+			{
+				if(board[subBoardCol] != 0)
+				{
+					subBoardValidity.add(board[subBoardCol]);
+				}
+			}
+		}
+
+		return subBoardValidity.isValid();
 	}
 
 	/**
