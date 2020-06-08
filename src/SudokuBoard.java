@@ -23,7 +23,14 @@ public class SudokuBoard {
 
 		for(int item = 0; item < board.length; item++)
 		{
-			this.board[item] = Integer.parseInt(board[item]);
+			int number = Integer.parseInt(board[item]);
+
+			if(!inRange(number, 0, 9))
+			{
+				throw new IllegalArgumentException("Sudoku board can only contain values from 0-9.");
+			}
+
+			this.board[item] = number;
 		}
 	}
 
