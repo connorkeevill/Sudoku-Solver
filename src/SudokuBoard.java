@@ -32,6 +32,12 @@ public class SudokuBoard {
 
 			this.board[item] = number;
 		}
+
+		if(!this.isValid())
+		{
+			this.board = new int[81];
+			throw new IllegalArgumentException("Invalid layout given to SudokuBoard.");
+		}
 	}
 
 	/**
