@@ -91,7 +91,17 @@ public class SudokuBoard {
 	 */
 	public boolean isValid()
 	{
-		return false;
+		for(int count = 0; count < 9; count++)
+		{
+			boolean countValid = validateRow(count) && validateColumn(count) && validateSubBoard(count);
+
+			if(!countValid)
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
