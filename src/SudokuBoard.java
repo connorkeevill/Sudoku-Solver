@@ -181,7 +181,7 @@ public class SudokuBoard {
 	{
 		guardAgainstIndexOutOfRange(pos);
 
-		return false;
+		return board[pos] == 0;
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class SudokuBoard {
 	 */
 	private void guardAgainstIndexOutOfRange(int index)
 	{
-		if(index < 0 || index >= board.length){
+		if(!inRange(index, 0, board.length - 1)){
 			throw new IllegalArgumentException("Given index out of range.");
 		}
 	}
@@ -219,6 +219,19 @@ public class SudokuBoard {
 		if(!inRange(value, 0, 9))
 		{
 			throw new IllegalArgumentException("Sudoku board can only contain values from 0-9.");
+		}
+	}
+
+	/**
+	 *  Protects against an invalid coordinate pairing.
+	 * @param col the column of the coordinate.
+	 * @param row the row of the coordinate.
+	 */
+	private void guardAgainstInvalidCoordinates(int col, int row)
+	{
+		if(!inRange(col, 0, 8) || !inRange(row, 0, 8))
+		{
+			throw new IllegalArgumentException("The given coordinates are outside the range of the board.");
 		}
 	}
 
@@ -309,7 +322,9 @@ public class SudokuBoard {
 
 	private int performCoordinateToIndexTranslation(int col, int row)
 	{
-		return -1;
+		guardAgainstInvalidCoordinates(col, row);
+
+		return col + 9 * row;
 	}
 
 	/**
