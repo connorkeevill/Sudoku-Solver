@@ -234,6 +234,48 @@ class SudokuBoardTest {
 	}
 
 	/**
+	 * Test that a full and valid board can be correctly identified.
+	 */
+	@Test
+	void checkIfCompleteBoardIsComplete()
+	{
+		String boardLayout = "9 7 3 5 8 1 4 2 6 " +
+							 "5 2 6 4 7 3 1 9 8 " +
+							 "1 8 4 2 9 6 7 5 3 " +
+							 "2 4 7 8 6 5 3 1 9 " +
+							 "3 9 8 1 2 4 6 7 5 " +
+							 "6 5 1 7 3 9 8 4 2 " +
+							 "8 1 9 3 4 2 5 6 7 " +
+							 "7 6 5 9 1 8 2 3 4 " +
+							 "4 3 2 6 5 7 9 8 1 ";
+
+		SudokuBoard board = new SudokuBoard(boardLayout);
+
+		assertTrue(board.isValidAndComplete());
+	}
+
+	/**
+	 * Test if an incomplete but valid board is correctly identified.
+	 */
+	@Test
+	void checkIfIncompleteBoardIsComplete()
+	{
+		String boardLayout = "9 7 3 5 8 1 4 2 6 " +
+							 "5 2 0 4 7 3 1 9 8 " +
+							 "1 8 4 2 9 6 7 5 3 " +
+							 "2 4 7 8 6 5 3 1 9 " +
+							 "3 9 8 1 0 4 6 7 5 " +
+							 "6 5 1 7 3 9 8 4 2 " +
+							 "8 1 9 3 4 0 5 6 7 " +
+							 "7 6 5 9 1 8 2 3 4 " +
+							 "4 3 2 6 5 7 9 8 1 ";
+
+		SudokuBoard board = new SudokuBoard(boardLayout);
+
+		assertFalse(board.isValidAndComplete());
+	}
+
+	/**
 	 * Test that an invalid board layout is rejected using the setBoard() method.
 	 */
 	@Test

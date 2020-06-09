@@ -137,6 +137,15 @@ public class SudokuBoard {
 	}
 
 	/**
+	 * Returns a boolean indicating whether or not the board is both valid and completely full.
+	 * @return the boolean.
+	 */
+	public boolean isValidAndComplete()
+	{
+		return false;
+	}
+
+	/**
 	 * Sets the value of the board at the given position
 	 * @param col the column of the square to modify
 	 * @param row the row of the square to modify
