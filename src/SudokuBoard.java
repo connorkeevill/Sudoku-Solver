@@ -37,6 +37,11 @@ public class SudokuBoard {
 		}
 	}
 
+	public void setBoard(String boardLayout)
+	{
+
+	}
+
 	/**
 	 * Returns a string representing the board.
 	 * @return string representation of the board.

@@ -193,6 +193,69 @@ class SudokuBoardTest {
 	}
 
 	/**
+	 * Test that a valid board layout is accepted when using the setBoard() method.
+	 */
+	@Test
+	void updateBoardLayoutWithValidLayout()
+	{
+		SudokuBoard board = new SudokuBoard();
+
+		String layout = "9 7 3 5 8 1 4 2 6 " +
+							 "5 2 6 4 7 3 1 9 8 " +
+							 "1 8 4 2 9 6 7 5 3 " +
+							 "2 4 7 8 6 5 3 1 9 " +
+							 "3 9 8 1 2 4 6 7 5 " +
+							 "6 5 1 7 3 9 8 4 2 " +
+							 "8 1 9 3 4 2 5 6 7 " +
+							 "7 6 5 9 1 8 2 3 4 " +
+							 "4 3 2 6 5 7 9 8 1 ";
+
+		board.setBoard(layout);
+
+		String expected = "9 | 7 | 3 || 5 | 8 | 1 || 4 | 2 | 6\n" +
+						  "-----------------------------------\n" +
+						  "5 | 2 | 6 || 4 | 7 | 3 || 1 | 9 | 8\n" +
+						  "-----------------------------------\n" +
+						  "1 | 8 | 4 || 2 | 9 | 6 || 7 | 5 | 3\n" +
+						  "===================================\n" +
+						  "2 | 4 | 7 || 8 | 6 | 5 || 3 | 1 | 9\n" +
+						  "-----------------------------------\n" +
+						  "3 | 9 | 8 || 1 | 2 | 4 || 6 | 7 | 5\n" +
+						  "-----------------------------------\n" +
+						  "6 | 5 | 1 || 7 | 3 | 9 || 8 | 4 | 2\n" +
+						  "===================================\n" +
+						  "8 | 1 | 9 || 3 | 4 | 2 || 5 | 6 | 7\n" +
+						  "-----------------------------------\n" +
+						  "7 | 6 | 5 || 9 | 1 | 8 || 2 | 3 | 4\n" +
+						  "-----------------------------------\n" +
+						  "4 | 3 | 2 || 6 | 5 | 7 || 9 | 8 | 1\n";
+
+		assertEquals(expected, board.toString());
+	}
+
+	/**
+	 * Test that an invalid board layout is rejected using the setBoard() method.
+	 */
+	@Test
+	void updateBoardLayoutWithInValidLayout()
+	{
+		String layout = "7 2 4 8 6 5 1 9 3 " +
+						"1 6 9 2 4 3 8 7 5 " +
+						"3 8 5 1 9 7 2 4 6 " +
+						"8 9 6 7 2 4 3 5 1 " +
+						"2 7 3 9 6 1 6 8 4 " +
+						"4 5 1 3 8 6 9 2 7 " +
+						"5 4 2 6 3 9 7 1 8 " +
+						"6 1 8 5 7 2 4 3 9 " +
+						"9 3 7 4 1 8 5 6 2 ";
+
+		SudokuBoard board = new SudokuBoard();
+
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> board.setBoard(layout));
+		assertEquals("Invalid layout given to SudokuBoard.", exception.getMessage());
+	}
+
+	/**
 	 * Test that a specific square on the board can be set using valid inputs, accessing with coordinates.
 	 */
 	@Test
