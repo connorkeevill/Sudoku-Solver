@@ -142,7 +142,19 @@ public class SudokuBoard {
 	 */
 	public boolean isValidAndComplete()
 	{
-		return false;
+		// Assume that board is full and try to disprove
+		boolean full = true;
+
+		for(int square : board)
+		{
+			if(square == 0)
+			{
+				full = false;
+				break;
+			}
+		}
+
+		return full && isValid();
 	}
 
 	/**
