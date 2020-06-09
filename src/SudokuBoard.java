@@ -37,9 +37,33 @@ public class SudokuBoard {
 		}
 	}
 
+	/**
+	 * Sets the layout of the board based on the given input string.
+	 * @param boardLayout the input layout.
+	 */
 	public void setBoard(String boardLayout)
 	{
+		this.board = new int[81];
+		String[] board = boardLayout.split(" ");
 
+		guardAgainstInvalidBoardLength(board);
+
+		// Store the current state of the board incase the new board is invalid.
+		int[] oldBoard = this.board;
+
+		for (int item = 0; item < board.length; item++) {
+			int number = Integer.parseInt(board[item]);
+
+			guardAgainstInvalidBoardValue(number);
+
+			this.board[item] = number;
+		}
+
+		if(!this.isValid())
+		{
+			this.board = oldBoard;
+			throw new IllegalArgumentException("Invalid layout given to SudokuBoard.");
+		}
 	}
 
 	/**
