@@ -200,7 +200,7 @@ class SudokuBoardTest {
 	{
 		SudokuBoard board = new SudokuBoard();
 
-		board.setValueAt(1, 1, 9);
+		board.setValueAt(0, 0, 9);
 
 		String expected = "9 |   |   ||   |   |   ||   |   |  \n" +
 						  "-----------------------------------\n" +
