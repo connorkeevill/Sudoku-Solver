@@ -17,7 +17,9 @@ class SudokuSolverTest {
 						"0 0 0 0 0 2 0 6 1 ";
 
 		SudokuSolver solver = new SudokuSolver(new SudokuBoard(layout));
-		SudokuBoard solved = solver.solve();
+		solver.solve();
+
+		SudokuBoard solved = solver.getBoard();
 
 		assertTrue(solved.isValidAndComplete());
 	}
