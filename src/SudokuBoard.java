@@ -325,11 +325,11 @@ public class SudokuBoard {
 
 		NumberConstraint colValidity = new NumberConstraint();
 
-		for(int colItem = 0; colItem < 54; colItem += 9)
+		for(int row = 0; row < 9; row++)
 		{
-			if(board[col + colItem] != 0)
+			if (board[col + row * 9] != 0)
 			{
-				colValidity.add(board[col + colItem]);
+				colValidity.add(board[col + row * 9]);
 			}
 		}
 
