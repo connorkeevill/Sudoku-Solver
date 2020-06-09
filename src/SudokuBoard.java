@@ -3,7 +3,7 @@
  * the board, with 0 being the top left, and 80 being the bottom right.
  */
 public class SudokuBoard {
-	int[] board;
+	private int[] board;
 
 	public SudokuBoard() {
 		board = new int[81];
@@ -111,6 +111,75 @@ public class SudokuBoard {
 	}
 
 	/**
+	 * Sets the value of the board at the given position
+	 * @param col the column of the square to modify
+	 * @param row the row of the square to modify
+	 * @param value the value to insert
+	 */
+	public void setValueAt(int col, int row, int value)
+	{
+		int pos = performCoordinateToIndexTranslation(col, row);
+
+		setValueAt(pos, value);
+	}
+
+	/**
+	 * Sets teh value of the board at the position given relative to the start of the array.
+	 * @param pos square's position in array.
+	 * @param value the value to insert.
+	 */
+	public void setValueAt(int pos, int value)
+	{
+
+	}
+
+	/**
+	 * Gets the value at the given position
+	 * @param col the column of the square to get the value of
+	 * @param row the row of the square to get the value of
+	 * @return the value at the position
+	 */
+	public int getValueAt(int col, int row)
+	{
+		int pos = performCoordinateToIndexTranslation(col, row);
+
+		return getValueAt(pos);
+	}
+
+	/**
+	 * Gets the value at the given position relative to the start of the array
+	 * @param pos the square's position in the array
+	 * @return the value at the position
+	 */
+	public int getValueAt(int pos)
+	{
+		return -1;
+	}
+
+	/**
+	 * Indicates whether or not there is a value at the given position.
+	 * @param col the column the square is in.
+	 * @param row the row the square is in.
+	 * @return boolean indicating whether or not there is value at the position.
+	 */
+	public boolean isSquareEmpty(int col, int row)
+	{
+		int pos = performCoordinateToIndexTranslation(col, row);
+
+		return isSquareEmpty(pos);
+	}
+
+	/**
+	 * Indicates whether or not there is a value at the given position.
+	 * @param pos the square's position in the array.
+	 * @return boolean indicating whether or not there is value at the position.
+	 */
+	public boolean isSquareEmpty(int pos)
+	{
+		return false;
+	}
+
+	/**
 	 * Protects against a board layout of the incorrect length.
 	 * @param boardLayout the board layout to verify
 	 */
@@ -208,6 +277,11 @@ public class SudokuBoard {
 		}
 
 		return subBoardValidity.isValid();
+	}
+
+	private int performCoordinateToIndexTranslation(int col, int row)
+	{
+		return -1;
 	}
 
 	/**

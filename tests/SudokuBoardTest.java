@@ -191,4 +191,160 @@ class SudokuBoardTest {
 
 		assertThrows(NumberFormatException.class, () -> new SudokuBoard(boardLayout));
 	}
+
+	/**
+	 * Test that a specific square on the board can be set using valid inputs, accessing with coordinates.
+	 */
+	@Test
+	void setValueWithValidCoords()
+	{
+		SudokuBoard board = new SudokuBoard();
+
+		board.setValueAt(1, 1, 9);
+
+		String expected = "9 |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "===================================\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "===================================\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n";
+
+		assertEquals(expected, board.toString());
+	}
+
+	/**
+	 * Test that invalid coords are rejected when settings a square, accessing with coordinates.
+	 */
+	@Test
+	void setValueWithInvalidCoords()
+	{
+		SudokuBoard board = new SudokuBoard();
+
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> board.setValueAt(-1, -1, 9));
+		assertEquals("The given coordinates are outside the range of the board.", exception.getMessage());
+	}
+
+	/**
+	 * Test that an invalid value is rejected when setting a square.
+	 */
+	@Test
+	void setInvalidValue()
+	{
+		SudokuBoard board = new SudokuBoard();
+
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> board.setValueAt(1, 1, -1));
+		assertEquals("Invalid value passed for board square.", exception.getMessage());
+
+	}
+
+	/**
+	 * Test that a specific square on the board can be set with a valid index.
+	 */
+	@Test
+	void setValueWithValidIndex()
+	{
+		SudokuBoard board = new SudokuBoard();
+
+		board.setValueAt(0, 9);
+
+		String expected = "9 |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "===================================\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "===================================\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n" +
+						  "-----------------------------------\n" +
+						  "  |   |   ||   |   |   ||   |   |  \n";
+
+		assertEquals(expected, board.toString());
+	}
+
+	/**
+	 * Test that an invalid index is rejected.
+	 */
+	@Test
+	void setValueWithInvalidIndex()
+	{
+		SudokuBoard board = new SudokuBoard();
+
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> board.setValueAt(81, 2));
+		assertEquals("Given index out of range.", exception.getMessage());
+	}
+
+	/**
+	 * Test that invalid coordinates are rejected when trying to get the value of a square.
+	 */
+	@Test
+	void getValueWithInvalidCoords()
+	{
+		String boardLayout = "9 7 3 5 8 1 4 2 6 " +
+							 "5 2 6 4 7 3 1 9 8 " +
+							 "1 8 4 2 9 6 7 5 3 " +
+							 "2 4 7 8 6 5 3 1 9 " +
+							 "3 9 8 1 2 4 6 7 5 " +
+							 "6 5 1 7 3 9 8 4 2 " +
+							 "8 1 9 3 4 2 5 6 7 " +
+							 "7 6 5 9 1 8 2 3 4 " +
+							 "4 3 2 6 5 7 9 8 1 ";
+
+		SudokuBoard board = new SudokuBoard(boardLayout);
+
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> board.getValueAt(-1, -1));
+		assertEquals("The given coordinates are outside the range of the board.", exception.getMessage());
+	}
+
+	/**
+	 * Test that an invalid index is rejected when trying to get the value of a square.
+	 */
+	@Test
+	void getValueWithInvalidIndex()
+	{
+		String boardLayout = "9 7 3 5 8 1 4 2 6 " +
+							 "5 2 6 4 7 3 1 9 8 " +
+							 "1 8 4 2 9 6 7 5 3 " +
+							 "2 4 7 8 6 5 3 1 9 " +
+							 "3 9 8 1 2 4 6 7 5 " +
+							 "6 5 1 7 3 9 8 4 2 " +
+							 "8 1 9 3 4 2 5 6 7 " +
+							 "7 6 5 9 1 8 2 3 4 " +
+							 "4 3 2 6 5 7 9 8 1 ";
+
+		SudokuBoard board = new SudokuBoard(boardLayout);
+
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> board.getValueAt(-1));
+		assertEquals("Given index out of range.", exception.getMessage());
+	}
+
+	/**
+	 * Test that the board can correctly report on the emptiness of an empty and occupied square.
+	 */
+	@Test
+	void canDetermineEmptinessOfSquares()
+	{
+		SudokuBoard board = new SudokuBoard();
+		board.setValueAt(1, 1);
+
+		assertTrue(board.isSquareEmpty(0));
+		assertFalse(board.isSquareEmpty(1));
+	}
 }
