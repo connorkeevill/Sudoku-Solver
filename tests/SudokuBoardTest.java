@@ -244,7 +244,7 @@ class SudokuBoardTest {
 		SudokuBoard board = new SudokuBoard();
 
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> board.setValueAt(1, 1, -1));
-		assertEquals("Invalid value passed for board square.", exception.getMessage());
+		assertEquals("Sudoku board can only contain values from 0-9.", exception.getMessage());
 
 	}
 
