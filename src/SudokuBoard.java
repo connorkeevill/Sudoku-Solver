@@ -25,10 +25,7 @@ public class SudokuBoard {
 		{
 			int number = Integer.parseInt(board[item]);
 
-			if(!inRange(number, 0, 9))
-			{
-				throw new IllegalArgumentException("Sudoku board can only contain values from 0-9.");
-			}
+			guardAgainstInvalidBoardValue(number);
 
 			this.board[item] = number;
 		}
@@ -118,19 +115,23 @@ public class SudokuBoard {
 	 */
 	public void setValueAt(int col, int row, int value)
 	{
+		guardAgainstInvalidBoardValue(value);
 		int pos = performCoordinateToIndexTranslation(col, row);
 
 		setValueAt(pos, value);
 	}
 
 	/**
-	 * Sets teh value of the board at the position given relative to the start of the array.
+	 * Sets the value of the board at the position given relative to the start of the array.
 	 * @param pos square's position in array.
 	 * @param value the value to insert.
 	 */
 	public void setValueAt(int pos, int value)
 	{
+		guardAgainstIndexOutOfRange(pos);
+		guardAgainstInvalidBoardValue(value);
 
+		board[pos] = value;
 	}
 
 	/**
@@ -153,7 +154,9 @@ public class SudokuBoard {
 	 */
 	public int getValueAt(int pos)
 	{
-		return -1;
+		guardAgainstIndexOutOfRange(pos);
+
+		return board[pos];
 	}
 
 	/**
@@ -176,6 +179,8 @@ public class SudokuBoard {
 	 */
 	public boolean isSquareEmpty(int pos)
 	{
+		guardAgainstIndexOutOfRange(pos);
+
 		return false;
 	}
 
@@ -191,6 +196,29 @@ public class SudokuBoard {
 		if(boardLayout.length < 81)
 		{
 			throw new IllegalArgumentException("The board layout must be exactly 81 numbers. It is too short.");
+		}
+	}
+
+	/**
+	 * Protects against an index that would be out of range for the board.
+	 * @param index the index to check.
+	 */
+	private void guardAgainstIndexOutOfRange(int index)
+	{
+		if(index < 0 || index >= board.length){
+			throw new IllegalArgumentException("Given index out of range.");
+		}
+	}
+
+	/**
+	 * Protects against a value not between 0-9 being put into the board.
+	 * @param value the value to check.
+	 */
+	private void guardAgainstInvalidBoardValue(int value)
+	{
+		if(!inRange(value, 0, 9))
+		{
+			throw new IllegalArgumentException("Sudoku board can only contain values from 0-9.");
 		}
 	}
 
