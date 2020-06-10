@@ -452,4 +452,22 @@ class SudokuBoardTest {
 		assertTrue(board.isSquareEmpty(0));
 		assertFalse(board.isSquareEmpty(1));
 	}
+
+	@Test
+	void testLayoutOutput()
+	{
+		String boardLayout = "9 7 3 5 8 1 4 2 6 " +
+							 "5 2 0 4 7 3 1 9 8 " +
+							 "1 8 4 2 9 6 7 5 3 " +
+							 "2 4 7 8 6 5 3 1 9 " +
+							 "3 9 8 1 0 4 6 7 5 " +
+							 "6 5 1 7 3 9 8 4 2 " +
+							 "8 1 9 3 4 0 5 6 7 " +
+							 "7 6 5 9 1 8 2 3 4 " +
+							 "4 3 2 6 5 7 9 8 1 ";
+
+		SudokuBoard board = new SudokuBoard(boardLayout);
+
+		assertEquals(boardLayout, board.getLayoutString());
+	}
 }
