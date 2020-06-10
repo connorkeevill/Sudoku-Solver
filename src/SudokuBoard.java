@@ -117,6 +117,19 @@ public class SudokuBoard {
 		return output.toString();
 	}
 
+	public String getLayoutString()
+	{
+		StringBuilder output = new StringBuilder();
+
+		for(int square : board)
+		{
+			output.append(square);
+			output.append(" ");
+		}
+
+		return output.toString();
+	}
+
 	/**
 	 * Returns a boolean indicating whether or not the board is in a valid configuration.
 	 * @return the boolean
