@@ -117,6 +117,10 @@ public class SudokuBoard {
 		return output.toString();
 	}
 
+	/**
+	 * Returns the board's representation as a string containing just the values at each square.
+	 * @return the layout string.
+	 */
 	public String getLayoutString()
 	{
 		StringBuilder output = new StringBuilder();

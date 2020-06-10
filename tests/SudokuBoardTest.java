@@ -453,6 +453,9 @@ class SudokuBoardTest {
 		assertFalse(board.isSquareEmpty(1));
 	}
 
+	/**
+	 * Test that the board can correctly return it's layout string.
+	 */
 	@Test
 	void testLayoutOutput()
 	{
