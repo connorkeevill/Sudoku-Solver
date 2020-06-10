@@ -6,11 +6,19 @@ public class SudokuSolver {
 		this.board = board;
 	}
 
+	/**
+	 * Solves the board.
+	 */
 	public void solve()
 	{
 		recursiveSolve(0);
 	}
 
+	/**
+	 * Solves the sudoku board recursively.
+	 * @param startPoint the square we've solved up to.
+	 * @return boolean to allow backtracking.
+	 */
 	private boolean recursiveSolve(int startPoint)
 	{
 		int square = getIndexOfNextFreeSquare(startPoint);
@@ -19,11 +27,6 @@ public class SudokuSolver {
 		if(square == 81 && board.isValid())
 		{
 			return true;
-		}
-		// If we're at the final square and the board isn't valid, then we need to go back
-		if(square == 81)
-		{
-			return false;
 		}
 
 		for(int numberToTry = 1; numberToTry <= 9; numberToTry++)
@@ -45,6 +48,10 @@ public class SudokuSolver {
 		return false;
 	}
 
+	/**
+	 * Returns the board.
+	 * @return SudokuBoard.
+	 */
 	public SudokuBoard getBoard() {
 		return board;
 	}
