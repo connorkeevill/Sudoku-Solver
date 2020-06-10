@@ -38,6 +38,15 @@ public class SudokuBoard {
 	}
 
 	/**
+	 * Copy constructor.
+	 * @param clone
+	 */
+	public SudokuBoard(SudokuBoard clone)
+	{
+		setBoard(clone.getLayoutString());
+	}
+
+	/**
 	 * Sets the layout of the board based on the given input string.
 	 * @param boardLayout the input layout.
 	 */
