@@ -1,7 +1,7 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
+package sudoku;
+
 import org.junit.jupiter.api.Test;
+import sudoku.SudokuBoard;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,7 +31,7 @@ class SudokuBoardTest {
 	}
 
 	/**
-	 * Test that the SudokuBoard is correctly created when instantiated by checking the output string
+	 * Test that the sudoku.SudokuBoard is correctly created when instantiated by checking the output string
 	 */
 	@Test
 	void createBoardFromValidString()
@@ -116,7 +116,7 @@ class SudokuBoardTest {
 							 "4 3 2 6 5 7 9 8 1 ";
 
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> new SudokuBoard(boardLayout));
-		assertEquals("Invalid layout given to SudokuBoard.", exception.getMessage());
+		assertEquals("Invalid layout given to sudoku.SudokuBoard.", exception.getMessage());
 	}
 
 	/**
@@ -294,7 +294,7 @@ class SudokuBoardTest {
 		SudokuBoard board = new SudokuBoard();
 
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> board.setBoard(layout));
-		assertEquals("Invalid layout given to SudokuBoard.", exception.getMessage());
+		assertEquals("Invalid layout given to sudoku.SudokuBoard.", exception.getMessage());
 	}
 
 	/**

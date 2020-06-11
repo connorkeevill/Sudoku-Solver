@@ -1,4 +1,8 @@
+package sudoku;
+
 import org.junit.jupiter.api.Test;
+import sudoku.SudokuBoard;
+import sudoku.SudokuSolver;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,3 +1,5 @@
+package sudoku;
+
 public class SudokuSolver {
 	private SudokuBoard board;
 
@@ -50,7 +52,7 @@ public class SudokuSolver {
 
 	/**
 	 * Returns the board.
-	 * @return SudokuBoard.
+	 * @return sudoku.SudokuBoard.
 	 */
 	public SudokuBoard getBoard() {
 		return board;

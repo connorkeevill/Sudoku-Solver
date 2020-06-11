@@ -1,3 +1,5 @@
+package sudoku;
+
 /**
  * The main object for the board. Represents a sudoku board as an array, with each index representing a square in
  * the board, with 0 being the top left, and 80 being the bottom right.
@@ -33,7 +35,7 @@ public class SudokuBoard {
 		if(!this.isValid())
 		{
 			this.board = new int[81];
-			throw new IllegalArgumentException("Invalid layout given to SudokuBoard.");
+			throw new IllegalArgumentException("Invalid layout given to sudoku.SudokuBoard.");
 		}
 	}
 
@@ -71,7 +73,7 @@ public class SudokuBoard {
 		if(!this.isValid())
 		{
 			this.board = oldBoard;
-			throw new IllegalArgumentException("Invalid layout given to SudokuBoard.");
+			throw new IllegalArgumentException("Invalid layout given to sudoku.SudokuBoard.");
 		}
 	}
 
