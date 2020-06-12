@@ -1,5 +1,8 @@
 package sudoku;
 
+/**
+ * Object to find a solution to a incomplete SudokuBoard
+ */
 public class SudokuSolver {
 	private SudokuBoard board;
 
