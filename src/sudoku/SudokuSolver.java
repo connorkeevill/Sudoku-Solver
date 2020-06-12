@@ -5,7 +5,7 @@ public class SudokuSolver {
 
 	public SudokuSolver(SudokuBoard board)
 	{
-		this.board = board;
+		this.board = new SudokuBoard(board);
 	}
 
 	/**
